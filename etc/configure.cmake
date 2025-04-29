@@ -139,7 +139,13 @@ option(_TANDEM_SOURCE ON)
 option(__EXTENSIONS__ ON)
 
 # Doxygen configuration
-find_package(Doxygen REQUIRED doxygen dot)
+if(SRecord_ENABLE_DOCS)
+  find_package(Doxygen REQUIRED doxygen dot)
+else()
+  function(doxygen_add_docs)
+    return()
+  endfunction(doxygen_add_docs)
+endif()
 
 set(DOXYGEN_DOT_GRAPH_MAX_NODES 150)
 set(DOXYGEN_ALPHABETICAL_INDEX NO)

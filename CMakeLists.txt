@@ -23,6 +23,9 @@ set(CMAKE_BUILD_TYPE Release)
 # Generate compile_commands.json for use by RTags, clang tools etc.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+
+option(SRecord_ENABLE_DOCS "Build SRecord documentation." OFF)
+
 # Headers are all relative to project root
 include_directories(./)
 
@@ -66,7 +69,9 @@ enable_testing()
 add_subdirectory(test)
 
 # Documentation & Man Pages
-add_subdirectory(doc)
+if(SRecord_ENABLE_DOCS)
+  add_subdirectory(doc)
+endif()
 
 # Package SRecord
 include(CPack)
