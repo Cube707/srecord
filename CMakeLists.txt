@@ -25,6 +25,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 option(SRecord_ENABLE_DOCS "Build SRecord documentation." ON)
+option(SRecord_ENABLE_TESTING "Build SRecord tests." ON)
 
 # Headers are all relative to project root
 include_directories(./)
@@ -65,8 +66,10 @@ foreach(p IN ITEMS srec_cat srec_cmp srec_info)
 endforeach()
 
 # Tests & support tools
-enable_testing()
-add_subdirectory(test)
+if(SRecord_ENABLE_TESTING)
+  enable_testing()
+  add_subdirectory(test)
+endif()
 
 # Documentation & Man Pages
 if(SRecord_ENABLE_DOCS)
